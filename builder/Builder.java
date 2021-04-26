@@ -1,7 +1,7 @@
 package builder;
 
 import shapes.AbstractShapeFactory;
-import shapes.Drawable;
+import shapes.Shape;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ public class Builder implements IBuilder {
   private AbstractShapeFactory factory;
   private String contextShape;
 
-  List<Drawable> shapes = new ArrayList<Drawable>();
+  List<Shape> shapes = new ArrayList<Shape>();
 
   // line attributs
   private double lineX0;
@@ -155,7 +155,7 @@ public class Builder implements IBuilder {
     }
   }
 
-  public List<Drawable> getDrawables() {
+  public List<Shape> getDrawables() {
     return this.shapes;
   }
 

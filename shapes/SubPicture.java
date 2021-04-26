@@ -7,43 +7,49 @@ import java.util.List;
 
 import visitor.Visitor;
 
-public class SubPicture implements Drawable {
-  private List<Drawable> picturesTab;
+public class SubPicture implements Shape {
+  private List<Shape> picturesTab;
 
   public SubPicture() {
     super();
-    this.picturesTab = new ArrayList<Drawable>();
+    this.picturesTab = new ArrayList<Shape>();
   }
 
-  public List<Drawable> getPicturesTab() {
+  public List<Shape> getPicturesTab() {
     return picturesTab;
   }
 
-  public void setPicturesTab(List<Drawable> picturesTab) {
+  public void setPicturesTab(List<Shape> picturesTab) {
     this.picturesTab = picturesTab;
   }
 
   // Méthodes propres à subPicture :
-  public void addPicture(Drawable drawable) {
-    this.picturesTab.add(drawable);
+  public void addPicture(Shape Shape) {
+    this.picturesTab.add(Shape);
   }
 
   public void move(int dx, int dy) {
     System.out.println("coucou");
-    for (Drawable shape : picturesTab) {
+    for (Shape shape : picturesTab) {
       shape.move(dx, dy);
     }
   }
 
   // méthode de rendu
   // public void draw(Graphics2D screen) {
-  // for (Drawable drawable : this.picturesTab) {
-  // drawable.draw(screen);
+  // for (Shape Shape : this.picturesTab) {
+  // Shape.draw(screen);
   // }
   // }
 
   @Override
   public void accept(Visitor v) {
     v.draw(this);
+  }
+
+  @Override
+  public void horizontalMirror() {
+    // TODO Auto-generated method stub
+
   }
 }

@@ -6,7 +6,7 @@ import java.awt.geom.*;
 import noise.Noise;
 import visitor.Visitor;
 
-public class HandCircle implements Drawable {
+public class HandCircle implements Shape {
   private double cx, cy, rad, noiseRayX, noiseRayY;
   private Color c;
 
@@ -86,5 +86,11 @@ public class HandCircle implements Drawable {
   @Override
   public void accept(Visitor v) {
     v.draw(this);
+  }
+
+  @Override
+  public void horizontalMirror() {
+    // TODO Auto-generated method stub
+
   }
 }

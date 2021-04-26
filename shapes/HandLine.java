@@ -7,7 +7,7 @@ import java.lang.Math;
 import noise.Noise;
 import visitor.Visitor;
 
-public class HandLine implements Drawable {
+public class HandLine implements Shape {
   private double x0, y0, x1, y1, startNoise, endNoise, ctrlNoise;
   private Color c;
 
@@ -113,5 +113,11 @@ public class HandLine implements Drawable {
 
   public void setC(Color c) {
     this.c = c;
+  }
+
+  @Override
+  public void horizontalMirror() {
+    // TODO Auto-generated method stub
+
   }
 }

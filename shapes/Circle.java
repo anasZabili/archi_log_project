@@ -5,7 +5,7 @@ import java.awt.geom.*;
 
 import visitor.Visitor;
 
-public class Circle implements Drawable {
+public class Circle implements Shape {
 	private double cx, cy, rad;
 	private Color c;
 
@@ -67,6 +67,12 @@ public class Circle implements Drawable {
 
 	@Override
 	public void accept(Visitor v) {
+		horizontalMirror();
 		v.draw(this);
+	}
+
+	@Override
+	public void horizontalMirror() {
+		move(0, (int) rad * 2);
 	}
 }

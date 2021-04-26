@@ -4,7 +4,7 @@ import java.awt.*;
 
 import visitor.Visitor;
 
-public class HandRectangle implements Drawable {
+public class HandRectangle implements Shape {
   private double x0, y0, x1, y1;
   private Color c;
 
@@ -88,5 +88,11 @@ public class HandRectangle implements Drawable {
   @Override
   public void accept(Visitor v) {
     v.draw(this);
+  }
+
+  @Override
+  public void horizontalMirror() {
+    // TODO Auto-generated method stub
+
   }
 }

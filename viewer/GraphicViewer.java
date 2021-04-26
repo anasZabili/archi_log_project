@@ -5,7 +5,7 @@ import java.awt.event.*;
 import java.awt.image.*;
 import javax.swing.*;
 
-import shapes.Drawable;
+import shapes.Shape;
 import visitor.ConcretVisitorGraphic;
 import visitor.Visitor;
 
@@ -34,7 +34,7 @@ public class GraphicViewer extends JFrame {
 		});
 	}
 
-	public void draw(java.util.List<Drawable> shapes, Visitor visitor) {
+	public void draw(java.util.List<Shape> shapes, Visitor visitor) {
 		// Shape line = new Line(2);
 		// line.accept(vRed);
 		// line.move();
@@ -42,7 +42,7 @@ public class GraphicViewer extends JFrame {
 		// line.accept(vBlue);
 		visitor.setScreen(onscreen);
 
-		for (Drawable shape : shapes) {
+		for (Shape shape : shapes) {
 			shape.accept(visitor);
 		}
 		repaint(100);

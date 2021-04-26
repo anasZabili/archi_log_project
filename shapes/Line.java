@@ -5,7 +5,7 @@ import java.awt.geom.*;
 
 import visitor.Visitor;
 
-public class Line implements Drawable {
+public class Line implements Shape {
 	private double x0, y0, x1, y1;
 	private Color c;
 
@@ -80,5 +80,11 @@ public class Line implements Drawable {
 	@Override
 	public void accept(Visitor v) {
 		v.draw(this);
+	}
+
+	@Override
+	public void horizontalMirror() {
+		// TODO Auto-generated method stub
+
 	}
 }

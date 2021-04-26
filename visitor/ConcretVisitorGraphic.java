@@ -5,7 +5,7 @@ import java.awt.geom.*;
 
 import noise.Noise;
 import shapes.Circle;
-import shapes.Drawable;
+import shapes.Shape;
 import shapes.HandCircle;
 import shapes.HandLine;
 import shapes.HandRectangle;
@@ -101,8 +101,8 @@ public class ConcretVisitorGraphic implements Visitor {
 
   @Override
   public void draw(SubPicture subPicture) {
-    for (Drawable drawable : subPicture.getPicturesTab()) {
-      drawable.accept(this);
+    for (Shape Shape : subPicture.getPicturesTab()) {
+      Shape.accept(this);
     }
   }
 

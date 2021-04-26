@@ -13,13 +13,13 @@ import visitor.Visitor;
 
 public class Test {
 
-	private static AbstractShapeFactory noisyShape = new NoisyShapeFactory();
+	private static AbstractShapeFactory noisyShape = new PerfectShapeFactory();
 
 	private static Visitor graphicVisitor = new ConcretVisitorGraphic();
 
-	public static java.util.List<Drawable> getDemo() {
+	public static java.util.List<Shape> getDemo() {
 
-		java.util.List<Drawable> ls = new ArrayList<Drawable>();
+		java.util.List<Shape> ls = new ArrayList<Shape>();
 		ls.add(noisyShape.createLine(0, 500, 800, 500, Color.GREEN));
 		ls.add(noisyShape.createLine(300, 0, 0, 300, Color.YELLOW));
 
@@ -50,10 +50,10 @@ public class Test {
 		return ls;
 	}
 
-	public static java.util.List<Drawable> getDemoGroups() {
+	public static java.util.List<Shape> getDemoGroups() {
 		SubPicture houseSubPicture = new SubPicture();
 
-		java.util.List<Drawable> ls = new ArrayList<Drawable>();
+		java.util.List<Shape> ls = new ArrayList<Shape>();
 		houseSubPicture.addPicture(noisyShape.createLine(0, 500, 800, 500, Color.GREEN));
 		houseSubPicture.addPicture(noisyShape.createLine(300, 0, 0, 300, Color.YELLOW));
 
@@ -94,20 +94,20 @@ public class Test {
 		return ls;
 	}
 
-	// public static void main(String[] args) {
-	// GraphicViewer gv = new GraphicViewer();
-	// java.util.List<Drawable> demo = getDemoGroups();
-	// gv.draw(demo, graphicVisitor);
-
-	// }
-
 	public static void main(String[] args) {
-		Builder builder = new Builder(noisyShape);
-		Director director = new Director(builder);
-		director.construct("./pencil.xml");
 		GraphicViewer gv = new GraphicViewer();
-		List<Drawable> demo = builder.getDrawables();
+		java.util.List<Shape> demo = getDemoGroups();
 		gv.draw(demo, graphicVisitor);
+
 	}
+
+	// public static void main(String[] args) {
+	// Builder builder = new Builder(noisyShape);
+	// Director director = new Director(builder);
+	// director.construct("./drawing.xml");
+	// GraphicViewer gv = new GraphicViewer();
+	// List<Shape> demo = builder.getDrawables();
+	// gv.draw(demo, graphicVisitor);
+	// }
 
 }
