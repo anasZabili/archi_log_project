@@ -73,6 +73,6 @@ public class Circle implements Shape {
 
 	@Override
 	public void horizontalMirror() {
-		move(0, (int) rad * 2);
+		this.cy = 600 - this.cy;
 	}
 }

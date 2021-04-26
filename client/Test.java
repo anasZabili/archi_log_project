@@ -13,7 +13,7 @@ import visitor.Visitor;
 
 public class Test {
 
-	private static AbstractShapeFactory noisyShape = new PerfectShapeFactory();
+	private static AbstractShapeFactory noisyShape = new NoisyShapeFactory();
 
 	private static Visitor graphicVisitor = new ConcretVisitorGraphic();
 

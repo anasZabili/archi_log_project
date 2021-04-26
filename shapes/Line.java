@@ -79,12 +79,14 @@ public class Line implements Shape {
 
 	@Override
 	public void accept(Visitor v) {
+		horizontalMirror();
 		v.draw(this);
 	}
 
 	@Override
 	public void horizontalMirror() {
-		// TODO Auto-generated method stub
-
+		this.y0 = 600 - this.y0;
+		this.y1 = 600 - this.y1;
+		// this.y0 += this.y0;
 	}
 }
