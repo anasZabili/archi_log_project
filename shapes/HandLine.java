@@ -48,7 +48,6 @@ public class HandLine implements Shape {
 
   @Override
   public void accept(Visitor v) {
-    horizontalMirror();
     v.draw(this);
   }
 
@@ -114,11 +113,5 @@ public class HandLine implements Shape {
 
   public void setC(Color c) {
     this.c = c;
-  }
-
-  @Override
-  public void horizontalMirror() {
-    this.y0 = 600 - this.y0;
-    this.y1 = 600 - this.y1;
   }
 }

@@ -85,12 +85,7 @@ public class HandCircle implements Shape {
 
   @Override
   public void accept(Visitor v) {
-    horizontalMirror();
     v.draw(this);
   }
 
-  @Override
-  public void horizontalMirror() {
-    this.cy = 600 - this.cy;
-  }
 }

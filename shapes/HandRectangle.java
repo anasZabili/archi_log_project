@@ -89,10 +89,4 @@ public class HandRectangle implements Shape {
   public void accept(Visitor v) {
     v.draw(this);
   }
-
-  @Override
-  public void horizontalMirror() {
-    // TODO Auto-generated method stub
-
-  }
 }

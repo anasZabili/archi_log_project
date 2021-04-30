@@ -10,6 +10,6 @@ public interface Shape {
 
 	public void move(int dx, int dy);
 
-	public void horizontalMirror();
+	// public void horizontalMirror();
 
 }

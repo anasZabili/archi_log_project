@@ -47,9 +47,4 @@ public class SubPicture implements Shape {
     v.draw(this);
   }
 
-  @Override
-  public void horizontalMirror() {
-    // TODO Auto-generated method stub
-
-  }
 }

@@ -61,13 +61,7 @@ public class Rectangle implements Shape {
 
 	@Override
 	public void accept(Visitor v) {
-		horizontalMirror();
 		v.draw(this);
 	}
 
-	@Override
-	public void horizontalMirror() {
-		this.y0 = y0 - this.getHeight();
-		this.y1 = y0 + (600 - this.getHeight());
-	}
 }

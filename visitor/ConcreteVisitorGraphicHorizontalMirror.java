@@ -13,9 +13,10 @@ import shapes.Line;
 import shapes.Rectangle;
 import shapes.SubPicture;
 
-public class ConcretVisitorGraphic implements Visitor {
+public class ConcreteVisitorGraphicHorizontalMirror implements Visitor {
 
   private Graphics2D screen;
+  private static final int windowHeight = 600;
 
   public Graphics2D getScreen() {
     return screen;
@@ -28,10 +29,11 @@ public class ConcretVisitorGraphic implements Visitor {
   @Override
   public void draw(Rectangle rectangle) {
     double x0 = rectangle.getX0();
-    double y0 = rectangle.getY0();
+    double y0 = rectangle.getY0() - rectangle.getHeight();
     double x1 = rectangle.getX1();
-    double y1 = rectangle.getY1();
+    double y1 = y0 + (windowHeight - rectangle.getHeight());
     Color color = rectangle.getC();
+
     screen.setColor(color);
     screen.draw(new Rectangle2D.Double(x0, y0, x1 - x0, y1 - y0));
 
@@ -40,10 +42,11 @@ public class ConcretVisitorGraphic implements Visitor {
   @Override
   public void draw(Line line) {
     double x0 = line.getX0();
-    double y0 = line.getY0();
+    double y0 = windowHeight - line.getY0();
     double x1 = line.getX1();
-    double y1 = line.getY1();
+    double y1 = windowHeight - line.getY1();
     Color color = line.getC();
+
     screen.setColor(color);
     screen.draw(new Line2D.Double(x0, y0, x1, y1));
 
@@ -53,8 +56,9 @@ public class ConcretVisitorGraphic implements Visitor {
   public void draw(Circle circle) {
     double rad = circle.getRad();
     double cx = circle.getCx();
-    double cy = circle.getCy();
+    double cy = windowHeight - circle.getCy();
     Color color = circle.getC();
+
     screen.setColor(color);
     screen.draw(new Ellipse2D.Double(cx - rad, cy - rad, rad * 2, rad * 2));
   }
@@ -82,9 +86,9 @@ public class ConcretVisitorGraphic implements Visitor {
   public void draw(HandLine line) {
     // TODO Auto-generated method stub
     double x0 = line.getX0();
-    double y0 = line.getY0();
+    double y0 = windowHeight - line.getY0();
     double x1 = line.getX1();
-    double y1 = line.getY1();
+    double y1 = windowHeight - line.getY1();
     Color color = line.getC();
     double startNoise = line.getStartNoise();
     double endNoise = line.getEndNoise();
@@ -110,7 +114,7 @@ public class ConcretVisitorGraphic implements Visitor {
   public void draw(HandCircle circle) {
     double rad = circle.getRad();
     double cx = circle.getCx();
-    double cy = circle.getCy();
+    double cy = windowHeight - circle.getCy();
     double noiseRayX = circle.getNoiseRayX();
     double noiseRayY = circle.getNoiseRayY();
     Color color = circle.getC();

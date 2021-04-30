@@ -3,6 +3,9 @@ package client;
 import java.awt.Color;
 import java.util.*;
 
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import builder.Builder;
 import builder.Director;
 import builder.XMLShapeLoader;
@@ -10,10 +13,12 @@ import shapes.*;
 import viewer.GraphicViewer;
 import visitor.ConcretVisitorGraphic;
 import visitor.Visitor;
+import java.awt.BorderLayout;
 
 public class Test {
 
 	private static AbstractShapeFactory noisyShape = new NoisyShapeFactory();
+	private static AbstractShapeFactory perfectShape = new PerfectShapeFactory();
 
 	private static Visitor graphicVisitor = new ConcretVisitorGraphic();
 
@@ -97,6 +102,23 @@ public class Test {
 	public static void main(String[] args) {
 		GraphicViewer gv = new GraphicViewer();
 		java.util.List<Shape> demo = getDemoGroups();
+		// gv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		// gv.setLayout(new BorderLayout());
+
+		// JPanel panel1 = new JPanel();
+		// JPanel panel2 = new JPanel();
+		// JPanel panel3 = new JPanel();
+		// JPanel panel4 = new JPanel();
+
+		// panel1.setBackground(Color.red);
+		// panel2.setBackground(Color.green);
+		// panel3.setBackground(Color.yellow);
+		// panel4.setBackground(Color.blue);
+
+		// gv.add(panel1, BorderLayout.NORTH);
+		// gv.add(panel2, BorderLayout.EAST);
+		// gv.add(panel3, BorderLayout.WEST);
+
 		gv.draw(demo, graphicVisitor);
 
 	}
