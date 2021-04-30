@@ -101,7 +101,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		GraphicViewer gv = new GraphicViewer();
-		java.util.List<Shape> demo = getDemoGroups();
+		// java.util.List<Shape> demo = getDemoGroups();
 		// gv.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// gv.setLayout(new BorderLayout());
 
@@ -119,7 +119,7 @@ public class Test {
 		// gv.add(panel2, BorderLayout.EAST);
 		// gv.add(panel3, BorderLayout.WEST);
 
-		gv.draw(demo, graphicVisitor);
+		// gv.draw(demo, graphicVisitor);
 
 	}
 

@@ -27,10 +27,17 @@ public class GraphicViewer extends JFrame {
 	private JButton drawPencilButton;
 	private JButton drawDrawingButton;
 	private JButton drawHouseButton;
+	private JButton changeShapeTypeButton;
+	// private JButton noisyShapeButton;
 	private Visitor horizontaleVisitor = new ConcreteVisitorGraphicHorizontalMirror();
 	private Visitor graphicVisitor = new ConcretVisitorGraphic();
-	private AbstractShapeFactory noisyShape = new NoisyShapeFactory();
-	private AbstractShapeFactory perfectShape = new PerfectShapeFactory();
+	private AbstractShapeFactory shapeFactory;
+	private Visitor currentVisitor;
+
+	// current shape est l'attribut correspondant aux dessin actuellemnt dessiné
+	private List<Shape> currentShape;
+	// private AbstractShapeFactory noisyShape = new NoisyShapeFactory();
+	// private AbstractShapeFactory perfectShape = new PerfectShapeFactory();
 
 	private List<Shape> shapes;
 
@@ -39,6 +46,10 @@ public class GraphicViewer extends JFrame {
 		setSize(width + menuWidth, height);
 		setTitle("Afficheur de dessin");
 		shapes = new ArrayList<Shape>();
+		this.shapeFactory = new PerfectShapeFactory();
+		this.currentVisitor = this.graphicVisitor;
+		this.horizontaleVisitor.setScreen(onscreen);
+		this.graphicVisitor.setScreen(onscreen);
 
 		BufferedImage onscreenImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 		ImageIcon icon = new ImageIcon(onscreenImage);
@@ -54,7 +65,7 @@ public class GraphicViewer extends JFrame {
 			onscreen.fillRect(0, 0, width, height);
 			this.horizontaleVisitor.setScreen(onscreen);
 			onscreen.clearRect(0, 0, width, height);
-			for (Shape shape : this.shapes) {
+			for (Shape shape : this.currentShape) {
 				shape.accept(this.horizontaleVisitor);
 			}
 			repaint(100);
@@ -68,7 +79,7 @@ public class GraphicViewer extends JFrame {
 			onscreen.fillRect(0, 0, width, height);
 			this.graphicVisitor.setScreen(onscreen);
 			onscreen.clearRect(0, 0, width, height);
-			drawShapeFromXmlFile("pencil.xml", this.graphicVisitor, this.perfectShape);
+			drawShapeFromXmlFile("pencil.xml", this.currentVisitor);
 			repaint(100);
 		});
 
@@ -79,7 +90,7 @@ public class GraphicViewer extends JFrame {
 			onscreen.fillRect(0, 0, width, height);
 			this.graphicVisitor.setScreen(onscreen);
 			onscreen.clearRect(0, 0, width, height);
-			drawShapeFromXmlFile("drawing.xml", this.graphicVisitor, this.perfectShape);
+			drawShapeFromXmlFile("drawing.xml", this.currentVisitor);
 			repaint(100);
 		});
 
@@ -90,8 +101,26 @@ public class GraphicViewer extends JFrame {
 			onscreen.fillRect(0, 0, width, height);
 			this.graphicVisitor.setScreen(onscreen);
 			onscreen.clearRect(0, 0, width, height);
-			drawShapeFromXmlFile("house.xml", this.graphicVisitor, this.perfectShape);
+			drawShapeFromXmlFile("house.xml", this.currentVisitor);
 			repaint(100);
+		});
+
+		// Bouton en charge du changement de type de dessin
+		changeShapeTypeButton = new JButton("main");
+		changeShapeTypeButton.addActionListener(e -> {
+			if (this.shapeFactory instanceof NoisyShapeFactory) {
+				this.changeShapeTypeButton.setText("main");
+				this.shapeFactory = new PerfectShapeFactory();
+			} else {
+				this.changeShapeTypeButton.setText("perfect");
+				this.shapeFactory = new NoisyShapeFactory();
+			}
+			// onscreen.setBackground(Color.WHITE);
+			// onscreen.fillRect(0, 0, width, height);
+			// this.graphicVisitor.setScreen(onscreen);
+			// onscreen.clearRect(0, 0, width, height);
+			// drawShapeFromXmlFile("house.xml", this.graphicVisitor, this.shapeFactory);
+			// repaint(100);
 		});
 
 		menu.setBackground(Color.lightGray);
@@ -103,6 +132,7 @@ public class GraphicViewer extends JFrame {
 		menu.add(drawPencilButton);
 		menu.add(drawDrawingButton);
 		menu.add(drawHouseButton);
+		menu.add(changeShapeTypeButton);
 		onscreen = onscreenImage.createGraphics();
 
 		// Closing any view will quit :
@@ -123,12 +153,19 @@ public class GraphicViewer extends JFrame {
 		repaint(100);
 	}
 
-	private void drawShapeFromXmlFile(String file, Visitor visitor, AbstractShapeFactory factory) {
-		Builder builder = new Builder(factory);
+	private void drawShapeFromXmlFile(String file, Visitor visitor) {
+		Builder builder = new Builder(this.shapeFactory);
 		Director director = new Director(builder);
 		director.construct(file);
-		List<Shape> demo = builder.getDrawables();
-		for (Shape shape : demo) {
+		// List<Shape> demo = builder.getDrawables();
+		this.currentShape = builder.getDrawables();
+		for (Shape shape : this.currentShape) {
+			shape.accept(visitor);
+		}
+	}
+
+	private void drawCurrentShape(Visitor visitor) {
+		for (Shape shape : this.currentShape) {
 			shape.accept(visitor);
 		}
 	}

@@ -31,7 +31,7 @@ public class ConcreteVisitorGraphicHorizontalMirror implements Visitor {
     double x0 = rectangle.getX0();
     double y0 = rectangle.getY0() - rectangle.getHeight();
     double x1 = rectangle.getX1();
-    double y1 = y0 + (windowHeight - rectangle.getHeight());
+    double y1 = rectangle.getY1() - rectangle.getHeight();
     Color color = rectangle.getC();
 
     screen.setColor(color);
