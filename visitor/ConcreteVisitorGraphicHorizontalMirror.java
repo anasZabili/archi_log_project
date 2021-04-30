@@ -84,7 +84,6 @@ public class ConcreteVisitorGraphicHorizontalMirror implements Visitor {
 
   @Override
   public void draw(HandLine line) {
-    // TODO Auto-generated method stub
     double x0 = line.getX0();
     double y0 = windowHeight - line.getY0();
     double x1 = line.getX1();
