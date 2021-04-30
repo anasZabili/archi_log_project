@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE drawing SYSTEM "drawing.dtd">
+<drawing xmlns="http://www.univ-rouen.fr/house">
+
+
+<line color="green">
+   <point x="1" y="500" />
+   <point x="800" y="500" />
+</line>
+
+<line color="yellow">
+   <point x="300" y="0" />
+   <point x="1" y="300" />
+</line>
+
+<line color="blue">
+   <point x="30" y="300" />
+   <point x="180" y="200" />
+</line>
+
+<line color="blue">
+   <point x="330" y="300" />
+   <point x="180" y="200" />
+</line>
+
+<rectangle color="red">
+   <point x="30" y="300" />
+   <point x="330" y="500" />
+</rectangle>
+
+<circle color="black">
+   <point x="600" y="120" />
+   <radius>60</radius>
+</circle>
+
+<line color="red">
+   <point x="600" y="380" />
+   <point x="560" y="340" />
+</line>
+
+<line color="red">
+   <point x="600" y="380" />
+   <point x="640" y="340" />
+</line>
+
+<circle color="grey">
+   <point x="600" y="330" />
+   <radius>20</radius>
+</circle>
+
+<line color="blue">
+   <point x="600" y="450" />
+   <point x="600" y="350" />
+</line>
+
+<line color="black">
+   <point x="600" y="450" />
+   <point x="580" y="500" />
+</line>
+
+<line color="black">
+   <point x="600" y="450" />
+   <point x="620" y="500" />
+</line>
+
+
+</drawing>
